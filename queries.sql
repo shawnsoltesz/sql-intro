@@ -39,10 +39,25 @@ Update all employees that are cooks to have a salary of 500.
 
 UPDATE "Employees"
 SET "Salary" = 500
-WHERE "JobPosition" = 'Cook'
+WHERE "JobPosition" = 'Cook';
 
 Delete all employees that have the full name of "Lazy Larry".
 
-
+DELETE
+FROM "Employees"
+WHERE "FullName" = 'Lazy Larry';
 
 Add a column to the table: ParkingSpot as textual information that can store up to 10 characters.
+
+ALTER TABLE "Employees" ADD COLUMN "ParkingSpot" VARCHAR(10);
+
+Add queries to queries.sql that show how to:
+
+Recreate your database and tables and use NOT NULL for columns you feel are required.
+
+
+
+Add a primary key named Id to your table.
+
+
+
