@@ -19,16 +19,15 @@ SELECT * FROM "Employees"
 
 Select only the full names and phone extensions for only full-time employees.
 
-CompanyDatabase> SELECT "FullName", "PhoneExtension" FROM "Employees" WHERE "IsPartTime" = 'True';
-+----------------+------------------+
-| FullName       | PhoneExtension   |
-|----------------+------------------|
-| Sally Turnbole | 2212             |
-| Gerry Sizemore | 5102             |
-| Coco Jenkins   | 2850             |
-| Ursa LaMore    | 1151             |
-| Anita Shotz    | 2112             |
-+----------------+------------------+
+CompanyDatabase> SELECT "FullName", "PhoneExtension" FROM "Employees" WHERE "IsPartTime" = 'False';
++-----------------+------------------+
+| FullName        | PhoneExtension   |
+|-----------------+------------------|
+| Sally Jesse     | 1134             |
+| Danny Highwater | 2019             |
+| Harry Truman    | 7820             |
+| Jim Smith       | 3582             |
++-----------------+------------------+
 
 Insert a new part-time employee, as a software developer, with a salary of 450. Make up values for the other columns.
 
@@ -58,9 +57,7 @@ Id as a primary key
 DepartmentName as text
 Building as text
 
-CREATE TABLE "Departments" (
-................   "Id" Serial Primary Key,
-................   "Department Name" TEXT);
+CREATE TABLE "Departments" ("Id" Serial Primary Key, "DepartmentName" TEXT);
 
 Forgot the Builing column so Altered Table:
 
@@ -80,12 +77,14 @@ QuantityInStock as a data type that can store a number WITHOUT decimal places (e
 
 CREATE TABLE "Products" ("Id" Serial Primary Key,"Price" DECIMAL,"Name" TEXT,"Description" TEXT,"QuantityInStock" INT);
 
-
 Orders should have the columns
 Id as a primary key
 OrderNumber as textual data
 DatePlaced as a data type that can store a date (with Year, Month, and Day) -- or one with hours, minutes, and seconds. Student's choice.
 Email as textual data
+
+CREATE TABLE "Orders" ("Id" Serial Primary Key,"OrderNumber" TEXT,"DatePlaced" DATE,"Email" TEXT);
+
 In our company, one Order can have many Products and one Product can have many Orders. This will be a Many-to-Many relationship. Create the necessary table ProductOrders, foreign keys, and the OrderQuantity field needed for this to happen.
 [ ] Create queries that can do the following:
 
@@ -93,6 +92,10 @@ Insert the following Departments
 Department Name	Building
 Development	Main
 Marketing	North
+
+INSERT INTO "Departments" ("DepartmentName","Building") VALUES ('Development','Main');
+INSERT INTO "Departments" ("DepartmentName","Building") VALUES ('Marketing','North');
+
 Insert the following Employees
 FullName	Salary	JobPosition	PhoneExtension	IsPartTime	Department Id
 Tim Smith	40000	Programmer	123	false	1
