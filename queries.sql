@@ -117,13 +117,40 @@ Price	Name	Description	QuantityInStock
 INSERT INTO "Products" ("Price", "Name", "Description", "QuantityInStock") VALUES (12.45, 'Widget', 'The Original Widget', 100);
 INSERT INTO "Products" ("Price", "Name", "Description", "QuantityInStock") VALUES (99.99, 'Flowbee', 'Perfect for Haircuts', 3);
 
-
 [ ] Insert a new order with order number X529, placed on Jan 1st, 2020 at 4:55PM, by someone with the email address "person@example.com"
+
+INSERT INTO "Orders" ("OrderNumber", "DatePlaced", "Email") VALUES ('X529', DATE '2020-01-01', 'person@example.com');
+
 [ ] Add an order quantity of 3 for the product named Widget to the order X529
+
+INSERT INTO "Product Orders" ("OrderQuantity", "OrderId", "ProductID") VALUES (3, 1, 1);
+
 [ ] Add an order quantity of 2 for the product named Flowbee to the order X529
-[ ] Given a building, return all employees that work in that building. Show this query for buildings named North Side, East Side, and finally a building that you actually have in your data -- even if your data doesn't have any departments in those buildings. NOTE this means you can't manually look up Ids and use them, you have to let SQL do that work. (Hint: JOIN)
+
+INSERT INTO "Product Orders" ("OrderQuantity", "OrderId", "ProductID") VALUES (2, 1, 2);
+
+[ ] Given a building, return all employees that work in that building. 
+Show this query for buildings named North Side, East Side, and finally a building 
+that you actually have in your data -- even if your data doesn't have any departments 
+in those buildings. NOTE this means you can't manually look up Ids and use them, you 
+have to let SQL do that work. (Hint: JOIN)
+
+SELECT *
+FROM "Departments"
+JOIN "Employees" ON "Departments"."DepartmentId" = "Departments"."Id";
+WHERE "Departments"."Building" = 'North Side';
+
 [ ] Find all orders that contain the product id of 2.
-[ ] Find the quantity of the Flowbee product from order with order number X529. You may not write the value of an Id in your query, let SQL do the work (HINT: JOIN)
+
+CREATE TABLE "ProductOrders" (
+  "Id"       SERIAL PRIMARY KEY,
+  "ProductId"  INTEGER REFERENCES "Products" ("Id"),
+  "OrderId"  INTEGER REFERENCES "Orders" ("Id")
+);
+
+[ ] Find the quantity of the Flowbee product from order with order number X529. 
+You may not write the value of an Id in your query, let SQL do the work (HINT: JOIN)
+
 
 
 
