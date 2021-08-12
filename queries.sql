@@ -88,6 +88,8 @@ CREATE TABLE "Orders" ("Id" Serial Primary Key,"OrderNumber" TEXT,"DatePlaced" D
 In our company, one Order can have many Products and one Product can have many Orders. This will be a Many-to-Many relationship. Create the necessary table ProductOrders, foreign keys, and the OrderQuantity field needed for this to happen.
 [ ] Create queries that can do the following:
 
+CREATE TABLE "Product Orders" ("Id" Serial Primary Key,"OrderQuantity" INTEGER,"OrderId" INTEGER NULL REFERENCES "Orders" ("Id"), "ProductID" INTEGER NULL REFERENCES "Products" ("Id"));
+
 Insert the following Departments
 Department Name	Building
 Development	Main
@@ -101,11 +103,21 @@ FullName	Salary	JobPosition	PhoneExtension	IsPartTime	Department Id
 Tim Smith	40000	Programmer	123	false	1
 Barbara Ramsey	80000	Manager	234	false	1
 Tom Jones	32000	Admin	456	true	2
+
+INSERT INTO "Employees" ("FullName", "Salary", "JobPosition", "PhoneExtension", "IsPartTime", "DepartmentId") VALUES ('Barbara Ramsey', 80000, 'Programmer', 123, 'false', 1);
+INSERT INTO "Employees" ("FullName", "Salary", "JobPosition", "PhoneExtension", "IsPartTime", "DepartmentId") VALUES ('Tim Smith', 40000, 'Programmer', 123, 'false', 1);
+INSERT INTO "Employees" ("FullName", "Salary", "JobPosition", "PhoneExtension", "IsPartTime", "DepartmentId") VALUES ('Tom Jones', 32000, 'Admin', 456, 'true', 2);
+
 Insert the following Products
 
 Price	Name	Description	QuantityInStock
 12.45	Widget	The Original Widget	100
 99.99	Flowbee	Perfect for haircuts	3
+
+INSERT INTO "Products" ("Price", "Name", "Description", "QuantityInStock") VALUES (12.45, 'Widget', 'The Original Widget', 100);
+INSERT INTO "Products" ("Price", "Name", "Description", "QuantityInStock") VALUES (99.99, 'Flowbee', 'Perfect for Haircuts', 3);
+
+
 [ ] Insert a new order with order number X529, placed on Jan 1st, 2020 at 4:55PM, by someone with the email address "person@example.com"
 [ ] Add an order quantity of 3 for the product named Widget to the order X529
 [ ] Add an order quantity of 2 for the product named Flowbee to the order X529
