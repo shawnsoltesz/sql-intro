@@ -88,7 +88,7 @@ CREATE TABLE "Orders" ("Id" Serial Primary Key,"OrderNumber" TEXT,"DatePlaced" D
 In our company, one Order can have many Products and one Product can have many Orders. This will be a Many-to-Many relationship. Create the necessary table ProductOrders, foreign keys, and the OrderQuantity field needed for this to happen.
 [ ] Create queries that can do the following:
 
-CREATE TABLE "Product Orders" ("Id" Serial Primary Key,"OrderQuantity" INTEGER,"OrderId" INTEGER NULL REFERENCES "Orders" ("Id"), "ProductID" INTEGER NULL REFERENCES "Products" ("Id"));
+CREATE TABLE "ProductOrders" ("Id" Serial Primary Key,"OrderQuantity" INTEGER,"OrderId" INTEGER NULL REFERENCES "Orders" ("Id"), "ProductID" INTEGER NULL REFERENCES "Products" ("Id"));
 
 Insert the following Departments
 Department Name	Building
@@ -127,7 +127,7 @@ INSERT INTO "Product Orders" ("OrderQuantity", "OrderId", "ProductID") VALUES (3
 
 [ ] Add an order quantity of 2 for the product named Flowbee to the order X529
 
-INSERT INTO "Product Orders" ("OrderQuantity", "OrderId", "ProductID") VALUES (2, 1, 2);
+INSERT INTO "ProductOrders" ("OrderQuantity", "OrderId", "ProductID") VALUES (2, 1, 2);
 
 [ ] Given a building, return all employees that work in that building. 
 Show this query for buildings named North Side, East Side, and finally a building 
@@ -142,14 +142,19 @@ WHERE "Departments"."Building" = 'North Side';
 
 [ ] Find all orders that contain the product id of 2.
 
-CREATE TABLE "ProductOrders" (
-  "Id"       SERIAL PRIMARY KEY,
-  "ProductId"  INTEGER REFERENCES "Products" ("Id"),
-  "OrderId"  INTEGER REFERENCES "Orders" ("Id")
-);
+SELECT *
+FROM "Product Orders"
+WHERE "ProductID" = (2);
+
 
 [ ] Find the quantity of the Flowbee product from order with order number X529. 
 You may not write the value of an Id in your query, let SQL do the work (HINT: JOIN)
+
+SELECT *
+FROM SELECT "ProductOrders"."OrderQuantity"
+FROM "ProductOrders"
+JOIN "Orders" ON "ProductOrders"."OrderId" = "Orders"."Id"
+JOIN "Products" ON "ProductOrders"."ProductID" = "Products"."Id";
 
 
 
