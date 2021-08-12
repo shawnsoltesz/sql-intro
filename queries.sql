@@ -140,6 +140,20 @@ FROM "Departments"
 JOIN "Employees" ON "Employees"."DepartmentId" = "Departments"."Id"
 WHERE "Departments"."Building" = 'North';
 
+SELECT *
+FROM "Departments"
+JOIN "Employees" ON "Employees"."DepartmentId" = "Departments"."Id"
+WHERE "Departments"."Building" = 'East';
+
+SELECT *
+FROM "Departments"
+JOIN "Employees" ON "Employees"."DepartmentId" = "Departments"."Id"
+WHERE "Departments"."Building" = 'Main';
+
+SELECT *
+FROM "Departments"
+JOIN "Employees" ON "Employees"."DepartmentId" = "Departments"."Id"
+
 [ ] Find all orders that contain the product id of 2.
 
 SELECT *
